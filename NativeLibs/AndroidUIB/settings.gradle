@@ -1,0 +1,2 @@
+include ':app', ':androiduib'
+rootProject.name='AndroidUIB'
