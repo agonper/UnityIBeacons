@@ -32,11 +32,13 @@ class BeaconScanner(private val context: Context, private val appUUID: String, p
     private val BluetoothAdapter.isDisabled: Boolean
         get() = !isEnabled
 
-    fun startScan() {
+    init {
         bluetoothAdapter?.takeIf { it.isDisabled }?.apply {
             enable()
         }
+    }
 
+    fun startScan() {
         bluetoothAdapter?.apply {
             val settings = ScanSettings.Builder()
                 .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
