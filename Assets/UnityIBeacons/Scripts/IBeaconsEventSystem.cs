@@ -91,12 +91,6 @@ namespace IBeacons
         {
             lock (this)
             {
-                if (_listenersCounter == 0)
-                {
-                    StartScan();
-                }
-                _listenersCounter++;
-
                 switch (evt)
                 {
                     case Event.Found:
@@ -109,6 +103,12 @@ namespace IBeacons
                         _onBeaconLost += listener;
                         break;
                 }
+
+                if (_listenersCounter == 0)
+                {
+                    StartScan();
+                }
+                _listenersCounter++;
             }
         }
 
@@ -116,12 +116,6 @@ namespace IBeacons
         {
             lock (this)
             {
-                if (_listenersCounter == 1)
-                {
-                    StopScan();
-                }
-                _listenersCounter--;
-
                 switch (evt)
                 {
                     case Event.Found:
@@ -134,6 +128,12 @@ namespace IBeacons
                         _onBeaconLost -= listener;
                         break;
                 }
+
+                if (_listenersCounter == 1)
+                {
+                    StopScan();
+                }
+                _listenersCounter--;
             }
         }
 
